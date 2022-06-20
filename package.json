@@ -1,0 +1,11 @@
+{
+  "name": "smart-lottery",
+  "version": "1.0.0",
+  "description": "A smart contract for lottery ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Priyanka-Sachan",
+  "license": "MIT"
+}
