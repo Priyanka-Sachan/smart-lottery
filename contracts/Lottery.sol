@@ -46,7 +46,7 @@ contract Lottery is VRFConsumerBaseV2, KeeperCompatibleInterface {
     // indexed param easier to search, takes more gas
     // max 3 indexed param/topic
     event LotteryEnter(address indexed player);
-    event RequestedLotteryWinner(uint256 indexed requstId);
+    event RequestedLotteryWinner(uint256 indexed requestId);
     event WinnerPicked(address indexed winner);
 
     // Watchout!
@@ -58,13 +58,13 @@ contract Lottery is VRFConsumerBaseV2, KeeperCompatibleInterface {
         uint32 callbackGasLimit,
         uint256 interval
     ) VRFConsumerBaseV2(vrfCoordinatorV2) {
-        i_entranceFee = entranceFee;
         i_vrfCoordinator = VRFCoordinatorV2Interface(vrfCoordinatorV2);
+        i_entranceFee = entranceFee;
         i_gasLane = gasLane;
         i_subscriptionId = subscriptionId;
         i_callbackGasLimit = callbackGasLimit;
-        s_lotteryState = LotteryState.OPEN;
         i_interval = interval;
+        s_lotteryState = LotteryState.OPEN;
         s_lastTimeStamp = block.timestamp;
     }
 
@@ -123,6 +123,7 @@ contract Lottery is VRFConsumerBaseV2, KeeperCompatibleInterface {
             i_callbackGasLimit, // Gas limit to use for callback request function `fulfillRandomWords` here
             NUM_WORDS //Number of random words
         );
+        // This is redundant!
         emit RequestedLotteryWinner(requestId);
     }
 
@@ -167,8 +168,12 @@ contract Lottery is VRFConsumerBaseV2, KeeperCompatibleInterface {
         return s_players.length;
     }
 
-    function getLatestTimestamp() public view returns (uint256) {
+    function getLatestTimeStamp() public view returns (uint256) {
         return s_lastTimeStamp;
+    }
+
+    function getInterval() public view returns (uint256) {
+        return i_interval;
     }
 
     function getRequestConfirmations() public pure returns (uint256) {

@@ -19,6 +19,9 @@ module.exports = {
       chainId: 31337,
       blockConfirmations: 1,
     },
+    localhost: {
+      chainId: 31337,
+    },
     rinkeby: {
       url: RINKEBY_RPC_URL,
       accounts: [PRIVATE_KEY],
@@ -27,7 +30,7 @@ module.exports = {
     },
   },
   gasReporter: {
-    enabled: true,
+    enabled: false,
     outputFile: "gasReport.txt",
     noColors: true,
     currency: "USD",
@@ -44,4 +47,7 @@ module.exports = {
       default: 1,
     }
   },
+  mocha: {
+    timeout: 500000,
+  }
 };
