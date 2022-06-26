@@ -30,7 +30,12 @@ const networkConfig = {
 
 const developmentChains = ["hardhat", "localhost"];
 
+const frontEndContractsFile = "../smart-lottery-app/constants/contractAddresses.json";
+const frontEndAbiFile = "../smart-lottery-app/constants/abi.json";
+
 module.exports = {
   networkConfig,
-  developmentChains
+  developmentChains,
+  frontEndContractsFile,
+  frontEndAbiFile
 }
